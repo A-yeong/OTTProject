@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:OTTProject"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="CustomHederStyle" TargetType="TextBox">
+          
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+       
+        </Style> 
     </Application.Resources>
 </Application>

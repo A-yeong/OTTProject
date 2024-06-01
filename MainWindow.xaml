@@ -6,20 +6,18 @@
         xmlns:local="clr-namespace:OTTProject"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <Style x:Key="CustomTextBoxStyle" TargetType="TextBox">
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
-    </Window.Resources>
+
     
     <Grid>
 
         <Grid.RowDefinitions>
+            <!-- 헤더 -->
             <RowDefinition Height="1*" />
+            <!-- 메인화면 -->
             <RowDefinition Height="8*" />
         </Grid.RowDefinitions>
-        
 
+        <!-- 헤더 -->
         <Grid Grid.Row="0" Background="DarkGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="6*" />
@@ -29,19 +27,24 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <TextBox Margin="30,10,25,10" Style="{StaticResource CustomTextBoxStyle}"   Text="영화 또는 TV 프로그램 입력"></TextBox>
+                <TextBox Margin="30,10,25,10" Style="{StaticResource CustomHederStyle}"   Text="영화 또는 TV 프로그램 입력"></TextBox>
             </Grid>
             <Grid Grid.Column="1">
                 <Button  Margin="30,10,0,10" Content="검색"></Button>
             </Grid>
+           
             <Grid Grid.Column="2">
-                <Button Margin="30,10,0,10" Content='로그인'  Background="Transparent" BorderBrush="Transparent" />
+                <Button x:Name="login_button" Margin="30,10,0,10" Click="LoginButton_Click" Background="Transparent" BorderBrush="Transparent">
+                    <Image Source="/Resources/home.png"  />
+                </Button>
             </Grid>
         </Grid>
-    
 
-        <Grid Grid.Row="1">
-            <Image Source="/Resources/main_img.png" Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        </Grid>
+        <!-- 메인화면 -->
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden">
+            <Frame.Content>
+                <Image Source="/Resources/main_img.png" Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            </Frame.Content>
+        </Frame>
     </Grid>
 </Window>

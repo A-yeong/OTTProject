@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,23 +15,14 @@ using System.Windows.Shapes;
 
 namespace OTTProject
 {
-
-    public partial class MainWindow : Window
+    /// <summary>
+    /// SignIn.xaml에 대한 상호 작용 논리
+    /// </summary>
+    public partial class SignIn : Page
     {
-
-
-        public MainWindow()
+        public SignIn()
         {
             InitializeComponent();
-         
         }
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new Login ());
-        }
-
-
-
-
     }
 }
