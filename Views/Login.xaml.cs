@@ -15,14 +15,19 @@ using System.Windows.Shapes;
 
 namespace OTTProject
 {
-    /// <summary>
-    /// SignIn.xaml에 대한 상호 작용 논리
-    /// </summary>
-    public partial class SignIn : Page
+    
+    public partial class Login : Page
     {
-        public SignIn()
+        public Login()
         {
             InitializeComponent();
         }
+        private void Sign_in_Click(object sender, RoutedEventArgs e)
+        {
+            // 회원가입 버튼 클릭 시 페이지를 변경하거나 네비게이션하는 로직을 작성합니다.
+            // 예를 들어, 다른 페이지로 네비게이션할 수 있습니다.
+            NavigationService.Navigate(new Uri("Views/SignIn.xaml", UriKind.Relative));
+        }
     }
+
 }
