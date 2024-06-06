@@ -7,9 +7,41 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-    
-    <Grid>
+    <Window.Resources>
+        <!-- 스타일 정의 -->
+        <Style x:Key="HeaderTextBoxStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="30,10,25,10"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Background" Value="#FFE5E5E5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
 
+        <Style x:Key="HeaderButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="30,10,0,10"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Background" Value="#555555"/>
+      
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="0" Color="Black" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ImageButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Margin" Value="30,10,0,10"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
         <Grid.RowDefinitions>
             <!-- 헤더 -->
             <RowDefinition Height="1*" />
@@ -18,24 +50,23 @@
         </Grid.RowDefinitions>
 
         <!-- 헤더 -->
-        <Grid Grid.Row="0" Background="DarkGray">
+        <Grid Grid.Row="0" Background="#333333">
+         
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="6*" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
-          
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <TextBox Margin="30,10,25,10" Style="{StaticResource CustomHederStyle}"   Text="영화 또는 TV 프로그램 입력"></TextBox>
+                <TextBox Style="{StaticResource HeaderTextBoxStyle}" Text="영화 또는 TV 프로그램 입력" Foreground="Gray"/>
             </Grid>
             <Grid Grid.Column="1">
-                <Button  Margin="30,10,0,10" Content="검색"></Button>
+                <Button Style="{StaticResource HeaderButtonStyle}" Content="검색" />
             </Grid>
-           
             <Grid Grid.Column="2">
-                <Button x:Name="login_button" Margin="30,10,0,10" Click="LoginButton_Click" Background="Transparent" BorderBrush="Transparent">
-                    <Image Source="/Resources/home.png"  />
+                <Button x:Name="login_button" Style="{StaticResource ImageButtonStyle}" Click="LoginButton_Click">
+                    <Image Source="/Resources/home.png" Width="20" Height="20"/>
                 </Button>
             </Grid>
         </Grid>
