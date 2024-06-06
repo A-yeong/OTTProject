@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Reflection;
 using System.Windows;
 using MySqlConnector;
 using OTTProject.Models;
@@ -15,11 +16,11 @@ namespace OTTProject.Core
             string connString = "Server=localhost;Uid=root;Database=databasetest;Port=3307;Pwd=1234";
             conn = new MySqlConnection(connString);
         }
-    
 
-        public void SignIn(string query, UsersModel user)
+        //회원가입 
+        public void SignIn(UsersModel user)
         {
-            try
+            string query = "INSERT INTO OTT.Users (user_name, id, pw, nick_name) VALUES (@UserName, @ID, @PW, @NickName)"; try
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@UserName", user.UserName);
@@ -33,12 +34,51 @@ namespace OTTProject.Core
             catch (Exception ex)
             {
                 // 예외 처리 (로그 기록 등)
-             MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show("An error occurred: " + ex.Message);
             }
             finally
             {
                 conn.Close();
             }
         }
+        //로그인
+        public UsersModel LoginUser(string id, string pw)
+        {
+            UsersModel user = null;
+            string query = "SELECT * FROM OTT.users WHERE id = @id AND pw = @pw";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@pw", pw);
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    user = new UsersModel
+                    {
+                        PK = Convert.ToInt32(reader["pk"]),
+                        ID = reader["id"].ToString(),
+                        UserName = reader["user_name"].ToString(),
+                        PW = reader["pw"].ToString(),
+                        NickName = reader["nick_name"].ToString()
+                    };
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return user;
+        }
     }
-}
+    }

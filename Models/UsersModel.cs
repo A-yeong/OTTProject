@@ -12,12 +12,19 @@ namespace OTTProject.Models
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(name));
         }
-
+        private int? pk;
         private string userName;
         private string id;
         private string pw;
         private string nickName;
+        public int? PK {
 
+            get { return pk; }
+            set {
+                pk = value;
+                OnPropertyChanged(nameof(pk));
+            }
+        }
         public string UserName
         {
             get { return userName; }
