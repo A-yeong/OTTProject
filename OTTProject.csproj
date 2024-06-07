@@ -10,11 +10,13 @@
 
   <ItemGroup>
     <None Remove="Resources\home.png" />
+    <None Remove="Resources\justwatchmark.png" />
     <None Remove="Resources\main_img.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\home.png" />
+    <Resource Include="Resources\justwatchmark.png" />
     <Resource Include="Resources\main_img.png" />
   </ItemGroup>
 

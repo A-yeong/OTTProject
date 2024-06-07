@@ -73,6 +73,16 @@ namespace OTTProject.Properties {
         /// <summary>
         ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static byte[] justwatchmark {
+            get {
+                object obj = ResourceManager.GetObject("justwatchmark", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static byte[] main_img {
             get {
                 object obj = ResourceManager.GetObject("main_img", resourceCulture);
