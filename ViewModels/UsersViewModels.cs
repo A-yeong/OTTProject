@@ -10,10 +10,11 @@ namespace OTTProject.ViewModels
 {
     internal class UsersViewModels
     {
+        Repository repo = new Repository();
         public void SignUp_Click(UsersModel usersModel, NavigationService navigationService)
         {
       
-            Repository repo = new Repository();
+        
           
             repo.SignIn( usersModel);
 
@@ -25,10 +26,16 @@ namespace OTTProject.ViewModels
         }
 
         public UsersModel Login_click(string id, string pw) {
-            Repository repo = new Repository();
+          
            
             UsersModel user = repo.LoginUser(id, pw);
             return user;
+        }
+
+        public UsersModel IsId(string id) {
+            UsersModel user = repo.IDCheck(id);
+            return user;
+        
         }
     }
 }
