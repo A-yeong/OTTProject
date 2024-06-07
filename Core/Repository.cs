@@ -80,5 +80,84 @@ namespace OTTProject.Core
 
             return user;
         }
+        //id 중복 체크 
+        public UsersModel IDCheck(string id)
+        {
+            UsersModel user = null;
+            string query = "SELECT * FROM OTT.users WHERE id = @id";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+              
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    user = new UsersModel
+                    {
+                        PK = Convert.ToInt32(reader["pk"]),
+                        ID = reader["id"].ToString(),
+                        UserName = reader["user_name"].ToString(),
+                        PW = reader["pw"].ToString(),
+                        NickName = reader["nick_name"].ToString()
+                    };
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return user;
+        }
+        //nickname 중복 체크
+        public UsersModel NickNameCheck(string nickName)
+        {
+            UsersModel user = null;
+            string query = "SELECT * FROM OTT.users WHERE nick_name = @nick_name";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@nick_name", nickName);
+
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    user = new UsersModel
+                    {
+                        PK = Convert.ToInt32(reader["pk"]),
+                        ID = reader["id"].ToString(),
+                        UserName = reader["user_name"].ToString(),
+                        PW = reader["pw"].ToString(),
+                        NickName = reader["nick_name"].ToString()
+                    };
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return user;
+        }
+
     }
     }
