@@ -127,4 +127,10 @@
   <data name="main_img" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main_img.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="stream_finder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stream_finder.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="strem_finder_main" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\strem_finder_main.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
