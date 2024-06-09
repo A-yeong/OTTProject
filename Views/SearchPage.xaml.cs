@@ -13,10 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using System.Windows.Controls;
-using System.Windows.Navigation;
 using OTTProject.ViewModels;
 using OTTProject.Models;
+using Microsoft.VisualBasic;
 
 namespace OTTProject.Views
 {
@@ -28,22 +27,34 @@ namespace OTTProject.Views
         public SearchPage()
         {
             InitializeComponent();
-            Loaded += SearchPage_Loaded;
+            Loaded += SearchPage_Loaded; // 페이지 로드 이벤트에 핸들러 추가
         }
 
         public string TitleQuery { get; set; }
-        public ContentsModel model { get; set; }
+        public ContentsModel ContentModel { get; set; }
 
-        private void SearchPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void SearchPage_Loaded(object sender, RoutedEventArgs e)
         {
-
-            string titleTxt = title.Text;
-            if (!string.IsNullOrEmpty(TitleQuery))
+            if (ContentModel != null)
             {
-                title.Text = titleTxt;
-                // content_img.Source = model.ImgUrl;
-                genre.Text = model.Genre;
-                synopsis.Text = model.Synopsis;
+                MessageBox.Show(ContentModel.PK.ToString());
+                title.Text = ContentModel.ContentName; // ContentModel의 제목을 표시
+                genre.Text = ContentModel.Genre;
+                synopsis.Text = ContentModel.Synopsis;
+
+                // 이미지 URL을 BitmapImage로 변환하여 Image 컨트롤에 할당
+                if (!string.IsNullOrEmpty(ContentModel.ImgUrl))
+                {
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(ContentModel.ImgUrl, UriKind.Absolute);
+                    bitmap.EndInit();
+                    content_img.Source = bitmap;
+                }
+            }
+            else
+            {
+                MessageBox.Show("ContentModel is null.");
             }
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OTTProject.Models
 {
-    class ContentsModel : INotifyPropertyChanged
+    public class ContentsModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -38,7 +38,20 @@ namespace OTTProject
         {
             string title = search_title.Text;
             ContentsModel model = viewModels.SearchContents(title);
-            SearchPage.model = model;
+
+            if (model != null)
+            {
+                SearchPage searchPage = new SearchPage
+                {
+                    ContentModel = model
+                };
+
+                MainFrame.Navigate(searchPage);
+            }
+            else
+            {
+                MessageBox.Show("No content found with the given title.");
+            }
         }
 
         private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
