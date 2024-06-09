@@ -13,7 +13,7 @@ namespace OTTProject.Core
 
         public Repository()
         {
-            string connString = "Server=localhost;Uid=root;Database=databasetest;Port=3307;Pwd=1234";
+            string connString = "Server=localhost;Uid=root;Database=databasetest;Port=3306;Pwd=1234";
             conn = new MySqlConnection(connString);
         }
 
