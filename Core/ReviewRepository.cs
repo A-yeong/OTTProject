@@ -1,0 +1,72 @@
+﻿using MySqlConnector;
+using OTTProject.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace OTTProject.Core
+{
+    internal class ReviewRepository
+    {
+        private MySqlConnection conn;
+
+        public ReviewRepository()
+        {
+            string connString = "Server=localhost;Uid=root;Database=databasetest;Port=3306;Pwd=1234";
+            conn = new MySqlConnection(connString);
+        }
+
+        //후기 등록 
+        public void CreateReview(ReviewModel reviewModel)
+        {
+            string query = "INSERT INTO OTT.Reviews (content_pk, user_pk, star, content) VALUES (@ContentPk, @UserPk, @Star, @Content)"; try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ContentPk", reviewModel.ContentPk);
+                cmd.Parameters.AddWithValue("@UserPk", reviewModel.UserPk);
+                cmd.Parameters.AddWithValue("@Star", reviewModel.Star);
+                cmd.Parameters.AddWithValue("@Content", reviewModel.Content);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //후기 삭제
+        public void DeleteReview(ReviewModel reviewModel)
+        {
+            string query = "DELETE FROM OTT.Reviews WHERE PK = @PK";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@PK", reviewModel.Pk);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+    }
+}
