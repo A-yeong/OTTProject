@@ -41,7 +41,7 @@ namespace OTTProject.Models
             set
             {
                 content_name = value;
-                OnPropertyChanged(nameof(ContentName));
+                OnPropertyChanged(nameof(content_name));
             }
         }
 
@@ -50,8 +50,8 @@ namespace OTTProject.Models
             get { return img_url; }
             set
             {
-                content_name = value;
-                OnPropertyChanged(nameof(ImgUrl));
+                img_url = value;
+                OnPropertyChanged(nameof(img_url));
             }
         }
 
@@ -60,8 +60,8 @@ namespace OTTProject.Models
             get { return synopsis; }
             set
             {
-                content_name = value;
-                OnPropertyChanged(nameof(Synopsis));
+                synopsis = value;
+                OnPropertyChanged(nameof(synopsis));
             }
         }
 
@@ -70,8 +70,8 @@ namespace OTTProject.Models
             get { return genre; }
             set
             {
-                content_name = value;
-                OnPropertyChanged(nameof(Genre));
+                genre = value;
+                OnPropertyChanged(nameof(genre));
             }
         }
 
@@ -80,8 +80,8 @@ namespace OTTProject.Models
             get { return ott; }
             set
             {
-                content_name = value;
-                OnPropertyChanged(nameof(Ott));
+                ott = value;
+                OnPropertyChanged(nameof(ott));
             }
         }
     }
