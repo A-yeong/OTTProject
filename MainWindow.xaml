@@ -36,7 +36,7 @@
         <Style x:Key="ImageButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="Margin" Value="30,10,0,10"/>
+            <Setter Property="Margin" Value="3,3,0,0"/>
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
     </Window.Resources>
@@ -44,7 +44,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <!-- 헤더 -->
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="1.2*" />
             <!-- 메인화면 -->
             <RowDefinition Height="8*" />
         </Grid.RowDefinitions>
@@ -53,7 +53,7 @@
         <Grid Grid.Row="0" Background="#333333">
          
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1.4*" />
                 <ColumnDefinition Width="6*" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -61,7 +61,7 @@
            <!--메인으로 돌아가기위해 누르려고 추후 마크 그려서 넣으면 좋을듯 -->
             <Grid Grid.Column="0">
                 <Button x:Name="mark" Style="{StaticResource ImageButtonStyle}" Cursor="Hand" >
-                    <Image Source="/Resources/justwatchmark.png" Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                    <Image Source="/Resources/stream_finder.png" Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                 </Button>
             </Grid>
             <Grid Grid.Column="1">
@@ -80,7 +80,7 @@
         <!-- 메인화면 -->
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated">
             <Frame.Content>
-                <Image Source="/Resources/main_img.png" Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                <Image Source="/Resources/strem_finder_main.png" Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             </Frame.Content>
         </Frame>
     </Grid>

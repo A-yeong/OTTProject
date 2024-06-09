@@ -24,7 +24,7 @@ namespace OTTProject.Views
         //true면 회원가입 가능,false면 회원가입 불가
         private bool isSignUp()
         {
-            if (UserNameTextBox.Text == "" || IDTextBox.Text == "" || PWTextBox.Text == "" || PWCheckTextBox.Text == "" || NickNameTextBox.Text == "") {
+            if (UserNameTextBox.Text == "" || IDTextBox.Text == "" || PWTextBox.Password == "" || PWCheckTextBox.Password == "" || NickNameTextBox.Text == "") {
                 MessageBox.Show("필수 입력값을 모두 입력해주세요");
                 return false;
             }
@@ -48,7 +48,7 @@ namespace OTTProject.Views
                 MessageBox.Show("다시 닉네임 중복체크해주세요.");
                 return false;
             }
-            if (PWCheckTextBox.Text != PWTextBox.Text) {
+            if (PWCheckTextBox.Password != PWTextBox.Password) {
                 MessageBox.Show("비밀번호가 일치하지 않습니다");
                 return false;
             }
@@ -60,7 +60,7 @@ namespace OTTProject.Views
             if (isSignUp()) {
                 string userName = UserNameTextBox.Text;
                 string id = IDTextBox.Text;
-                string pw = PWTextBox.Text;
+                string pw = PWTextBox.Password;
                 string nickName = NickNameTextBox.Text;
 
 
