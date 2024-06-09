@@ -2,30 +2,40 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows8.0</TargetFramework>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\disney_plus.png" />
     <None Remove="Resources\home.png" />
     <None Remove="Resources\justwatchmark.png" />
     <None Remove="Resources\main_img.png" />
+<<<<<<< HEAD
+    <None Remove="Resources\netflix.png" />
+=======
     <None Remove="Resources\stream_fighter.png" />
     <None Remove="Resources\stream_fighter_main.png" />
     <None Remove="Resources\stream_finder.png" />
     <None Remove="Resources\strem_finder_main.png" />
+>>>>>>> 3a69258dbe599df465116ff2dd5deaecedc290b7
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\disney_plus.png" />
     <Resource Include="Resources\home.png" />
     <Resource Include="Resources\justwatchmark.png" />
     <Resource Include="Resources\main_img.png" />
+<<<<<<< HEAD
+    <Resource Include="Resources\netflix.png" />
+=======
     <Resource Include="Resources\stream_fighter.png" />
     <Resource Include="Resources\stream_fighter_main.png" />
     <Resource Include="Resources\stream_finder.png" />
     <Resource Include="Resources\strem_finder_main.png" />
+>>>>>>> 3a69258dbe599df465116ff2dd5deaecedc290b7
   </ItemGroup>
 
   <ItemGroup>
