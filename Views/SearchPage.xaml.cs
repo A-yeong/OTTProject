@@ -142,30 +142,17 @@ namespace OTTProject.Views
             }
         }
 
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
-            int userPk = (int)button.Tag;
-            // 수정 기능 구현
-        }
+     
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            int userPk = (int)button.Tag;
+            ReviewAndNickNameModel reviewModel = (ReviewAndNickNameModel)button.Tag;
+            reviewViewModel.deleteReview(reviewModel, ContentModel, NavigationService);
             // 삭제 기능 구현
         }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            int starCount = (int)value;
-            return new string('★', starCount); // Create a string with the star character repeated starCount times
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+ 
 
     }
 }
