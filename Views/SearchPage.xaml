@@ -148,35 +148,14 @@
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
-                    <GridViewColumn DisplayMemberBinding="{Binding Nickname}" Width="70"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Content}" Width="200"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Nickname}" Width="80"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Content}" Width="250"/>
                     <GridViewColumn DisplayMemberBinding="{Binding StrStarCount}" Width="100"/>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    <Button Content="수정" Click="EditButton_Click" Margin="5">
-                                        <Button.Style>
-                                            <Style TargetType="Button">
-                                                <Setter Property="Background" Value="White"/>
-                                           
-                                                <Setter Property="Foreground" Value="Black"/>
-                                               
-                                                <Setter Property="Padding" Value="10"/>
-                                             
-                                                <Setter Property="BorderThickness" Value="1"/>
-                                          
-                                                <Setter Property="BorderBrush" Value="Black"/>
-
-                                                <Setter Property="Visibility" Value="Collapsed"/>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding CanEdit}" Value="True">
-                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                    </Button>
+                                    
                                     <Button Content="삭제" Click="DeleteButton_Click" Margin="5">
                                         <Button.Style>
                                             <Style TargetType="Button">

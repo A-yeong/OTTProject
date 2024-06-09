@@ -28,6 +28,7 @@ namespace OTTProject.Views
         public SearchPage()
         {
             InitializeComponent();
+
             Loaded += SearchPage_Loaded; // 페이지 로드 이벤트에 핸들러 추가
         }
 
@@ -136,7 +137,7 @@ namespace OTTProject.Views
                     Content = content
                 };
 
-                reviewViewModel.createReview(newReview);
+                reviewViewModel.createReview(newReview, ContentModel, NavigationService);
 
             }
         }
