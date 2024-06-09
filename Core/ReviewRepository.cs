@@ -18,7 +18,44 @@ namespace OTTProject.Core
             string connString = "Server=localhost;Uid=root;Database=databasetest;Port=3306;Pwd=1234";
             conn = new MySqlConnection(connString);
         }
+        //후기 보기
+        public List<ReviewModel> GetReviewsByContentPk(int contentPk)
+        {
+            List<ReviewModel> reviews = new List<ReviewModel>();
+            string query = "SELECT content_pk, user_pk, star, content FROM OTT.Reviews WHERE content_pk = @ContentPk";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ContentPk", contentPk);
 
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ReviewModel review = new ReviewModel
+                    {   Pk=reader.GetInt32("pk"),
+                        ContentPk = reader.GetInt32("content_pk"),
+                        UserPk = reader.GetInt32("user_pk"),
+                        Star = reader.GetInt32("star"),
+                        Content = reader.GetString("content")
+                    };
+                    reviews.Add(review);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return reviews;
+        }
         //후기 등록 
         public void CreateReview(ReviewModel reviewModel)
         {

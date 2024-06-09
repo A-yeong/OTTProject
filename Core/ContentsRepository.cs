@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace OTTProject.Core
 {
@@ -29,7 +30,6 @@ namespace OTTProject.Core
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@title", title);
 
-
                 conn.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -46,6 +46,21 @@ namespace OTTProject.Core
                     };
                 }
                 reader.Close();
+
+                if (contents != null)
+                {
+                    string message = $"PK: {contents.PK}\n" +
+                     $"ContentName: {contents.ContentName}\n" +
+                     $"ImgUrl: {contents.ImgUrl}\n" +
+                     $"Synopsis: {contents.Synopsis}\n" +
+                     $"Genre: {contents.Genre}\n" +
+                     $"Ott: {contents.Ott}";
+                    MessageBox.Show(message);
+                }
+                else
+                {
+                    MessageBox.Show("No content found with the given title.");
+                }
             }
             catch (Exception ex)
             {
@@ -59,4 +74,4 @@ namespace OTTProject.Core
             return contents;
         }
     }
-}
+    }
