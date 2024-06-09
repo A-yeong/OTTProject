@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="disney_plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\disney_plus.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="home" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\home.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -127,10 +130,15 @@
   <data name="main_img" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main_img.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+<<<<<<< HEAD
+  <data name="netflix" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\netflix.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+=======
   <data name="stream_finder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stream_finder.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="strem_finder_main" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\strem_finder_main.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+>>>>>>> 3a69258dbe599df465116ff2dd5deaecedc290b7
   </data>
 </root>
