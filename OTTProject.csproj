@@ -2,22 +2,26 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows8.0</TargetFramework>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\disney_plus.png" />
     <None Remove="Resources\home.png" />
     <None Remove="Resources\justwatchmark.png" />
     <None Remove="Resources\main_img.png" />
+    <None Remove="Resources\netflix.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\disney_plus.png" />
     <Resource Include="Resources\home.png" />
     <Resource Include="Resources\justwatchmark.png" />
     <Resource Include="Resources\main_img.png" />
+    <Resource Include="Resources\netflix.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,10 +37,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -65,10 +65,10 @@
                 </Button>
             </Grid>
             <Grid Grid.Column="1">
-                <TextBox Style="{StaticResource HeaderTextBoxStyle}" Text="영화 또는 TV 프로그램 입력" Foreground="Gray"/>
+                <TextBox x:Name ="search_title" Style="{StaticResource HeaderTextBoxStyle}" Text="영화 또는 TV 프로그램 입력" Foreground="Gray"/>
             </Grid>
             <Grid Grid.Column="2">
-                <Button Style="{StaticResource HeaderButtonStyle}" Content="검색" />
+                <Button Style="{StaticResource HeaderButtonStyle}" Content="검색" Click="SearchButton_Click"/>
             </Grid>
             <Grid Grid.Column="3">
                 <Button x:Name="login_button" Style="{StaticResource ImageButtonStyle}" Click="LoginButton_Click">
@@ -78,7 +78,7 @@
         </Grid>
 
         <!-- 메인화면 -->
-        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden">
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated">
             <Frame.Content>
                 <Image Source="/Resources/main_img.png" Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             </Frame.Content>

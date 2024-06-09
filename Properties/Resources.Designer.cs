@@ -63,6 +63,16 @@ namespace OTTProject.Properties {
         /// <summary>
         ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static byte[] disney_plus {
+            get {
+                object obj = ResourceManager.GetObject("disney_plus", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static byte[] home {
             get {
                 object obj = ResourceManager.GetObject("home", resourceCulture);
@@ -86,6 +96,16 @@ namespace OTTProject.Properties {
         internal static byte[] main_img {
             get {
                 object obj = ResourceManager.GetObject("main_img", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] netflix {
+            get {
+                object obj = ResourceManager.GetObject("netflix", resourceCulture);
                 return ((byte[])(obj));
             }
         }
