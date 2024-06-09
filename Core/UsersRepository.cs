@@ -159,6 +159,46 @@ namespace OTTProject.Core
             return user;
         }
 
-        
+        //nickname 찾기
+        public UsersModel FindNickName(int? userPk)
+        {
+            UsersModel user = null;
+            string query = "SELECT * FROM OTT.users WHERE pk = @pk";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pk", userPk);
+
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    user = new UsersModel
+                    {
+                        PK = Convert.ToInt32(reader["pk"]),
+                        ID = reader["id"].ToString(),
+                        UserName = reader["user_name"].ToString(),
+                        PW = reader["pw"].ToString(),
+                        NickName = reader["nick_name"].ToString()
+                    };
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return user;
+        }
+
+
     }
-    }
+}

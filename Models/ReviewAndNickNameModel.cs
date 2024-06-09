@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Converters;
 
 namespace OTTProject.Models
 {
-    internal class ReviewModel:INotifyPropertyChanged
+    internal class ReviewAndNickNameModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -16,12 +17,14 @@ namespace OTTProject.Models
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(name));
         }
-
         private int? pk;
         private int? contentPk;
         private int? userPk;
-        private int star;
+        private string strStarCount;
         private string content;
+        private string nickName;
+        private bool? canEdit;
+        private bool? canDelete;
 
         public int? PK
         {
@@ -30,30 +33,31 @@ namespace OTTProject.Models
                 pk = value;
                 OnPropertyChanged(nameof(pk));
             }
-
         }
 
-        public int? ContentPk {
+        public int? ContentPk
+        {
             get { return contentPk; }
             set {
                 contentPk = value;
                 OnPropertyChanged(nameof(contentPk));
-                }
+            }
         }
-        public int? UserPk
-        {
+
+        public int? UserPk {
             get { return userPk; }
             set {
                 userPk = value;
                 OnPropertyChanged(nameof(userPk));
             }
         }
-        public int Star
+
+        public string StrStarCount
         {
-            get { return star; }
+            get { return strStarCount; }
             set {
-                star = value;
-                OnPropertyChanged(nameof(star));
+                strStarCount = value;
+                OnPropertyChanged(nameof(strStarCount));
             }
         }
 
@@ -66,6 +70,32 @@ namespace OTTProject.Models
             }
         }
 
+        public string Nickname
+        {
+            get { return nickName; }
+            set {
+                nickName = value;
+                OnPropertyChanged(nameof(nickName));
+            }
+        }
 
+        public bool? CanEdit
+        {
+            get { return canEdit; }
+            set {
+                canEdit = value;
+                OnPropertyChanged(nameof(canEdit));
+            }
+        }
+        
+        public bool? CanDelete {
+
+            get { return canDelete; }
+            set {
+                canDelete = value;
+                OnPropertyChanged(nameof(canDelete));
+            }
+        }
     }
+
 }
