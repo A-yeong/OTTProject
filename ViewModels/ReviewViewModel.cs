@@ -24,8 +24,13 @@ namespace OTTProject.ViewModels
 
         }
 
-        public void deleteReview(ReviewModel reviewModel) {
+        public void deleteReview(ReviewAndNickNameModel reviewModel, ContentsModel contentModel, NavigationService navigationService) {
             repo.DeleteReview(reviewModel);
+            SearchPage searchPage = new SearchPage
+            {
+                ContentModel = contentModel
+            };
+            navigationService?.Navigate(searchPage);
         }
     }
 }

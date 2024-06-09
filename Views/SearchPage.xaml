@@ -155,8 +155,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    
-                                    <Button Content="삭제" Click="DeleteButton_Click" Margin="5">
+
+                                    <Button Content="삭제" Click="DeleteButton_Click" Margin="5" Tag="{Binding}">
                                         <Button.Style>
                                             <Style TargetType="Button">
                                                 <Setter Property="Background" Value="White"/>
