@@ -34,7 +34,7 @@ namespace OTTProject.ViewModels
 
             return diaryAndContentList;
         }
-        //다이어리 5개만 보여주기
+      //다이어리 5개만 보여주기
         public List<DiaryTitleAndContentModel> GetDiaryByUserMainPage(int? userPk)
         {
             List<DiaryModel> diaries = diaryRepo.GetDiaryByUserMainPage(userPk);
@@ -55,6 +55,9 @@ namespace OTTProject.ViewModels
             }
 
             return diaryAndContentList;
+
+
+
         }
     }
 }

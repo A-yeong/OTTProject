@@ -194,7 +194,7 @@ namespace OTTProject.Core
                     {
                         title = reader["content_name"].ToString();
                     }
-                }              
+                }
             }
             catch (MySqlException ex)
             {

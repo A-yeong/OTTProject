@@ -1,4 +1,5 @@
-﻿using OTTProject.Models;
+﻿using OTTProject.Core;
+using OTTProject.Models;
 using OTTProject.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,11 @@ namespace OTTProject.Views
         private ReviewAndNickNameViewModels reviewAndNickNameViewModel = new ReviewAndNickNameViewModels();
         private ReviewViewModel reviewViewModel = new ReviewViewModel();
         private DiaryTitleAndContentViewModel diaryTitleAndContentViewModel = new DiaryTitleAndContentViewModel();
+        private ContentsRepository contentsRepo = new ContentsRepository();
         private DiaryViewModels diaryViewModels = new DiaryViewModels();
+
         private ContentViewModels contentViewModels = new ContentViewModels();
+
         public MyPage()
         {
             InitializeComponent();
@@ -77,10 +81,21 @@ namespace OTTProject.Views
         public void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            DiaryTitleAndContentViewModel diaryModel = (DiaryTitleAndContentViewModel)button.Tag;
-            // 여기서부터 작성해야됨
-            // diaryModel.deleteDiary(reviewModel, ContentModel, NavigationService);
+            DiaryTitleAndContentModel diaryModel = (DiaryTitleAndContentModel)button.Tag;
+
+            //string title = diaryModel.Title;
+            //MessageBox.Show(title);
+
+            ContentsModel content = contentsRepo.ContentByPk(diaryModel.ContentPK);
+
+            Diary diaryPage = new Diary(content, true)
+            {
+                PK = diaryModel.PK
+            };
+
+            NavigationService.Navigate(diaryPage);
         }
+
         public void LogOut(object sender, RoutedEventArgs e) {
             userViewModel.LogOut(NavigationService);
         }

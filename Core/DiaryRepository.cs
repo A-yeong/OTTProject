@@ -1,5 +1,6 @@
 ﻿using MySqlConnector;
 using OTTProject.Models;
+using OTTProject.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,33 @@ namespace OTTProject.Core
             try
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@content", diaryModel.Content);
+                cmd.Parameters.AddWithValue("@date_time", diaryModel.DateTime);
+                cmd.Parameters.AddWithValue("@star", diaryModel.Star);
+                cmd.Parameters.AddWithValue("@content_pk", diaryModel.ContentPk);
+                cmd.Parameters.AddWithValue("@user_pk", diaryModel.UserPk);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void DiaryModify(DiaryModel diaryModel)
+        {
+            string query = "UPDATE OTT.Diary SET content = @content, date_time = @date_time, star = @star, content_pk = @content_pk, user_pk = @user_pk WHERE pk = @pk";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pk", diaryModel.Pk);
                 cmd.Parameters.AddWithValue("@content", diaryModel.Content);
                 cmd.Parameters.AddWithValue("@date_time", diaryModel.DateTime);
                 cmd.Parameters.AddWithValue("@star", diaryModel.Star);
@@ -97,10 +125,11 @@ namespace OTTProject.Core
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@userPk", userPk);
 
+
                 conn.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                while (reader.Read())
+              while (reader.Read())
                 {
                     DiaryModel diary = new DiaryModel
                     {
@@ -113,6 +142,9 @@ namespace OTTProject.Core
                     };
                     diaries.Add(diary);
                 }
+
+         
+
                 reader.Close();
             }
             catch (Exception ex)
@@ -125,7 +157,10 @@ namespace OTTProject.Core
                 conn.Close();
             }
 
+
             return diaries;
+
+
         }
 
         //다이러리 삭제
