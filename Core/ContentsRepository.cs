@@ -1,4 +1,4 @@
-﻿using MySqlConnector;
+using MySqlConnector;
 using OTTProject.Models;
 using System;
 using System.Collections.Generic;
