@@ -25,12 +25,15 @@ namespace OTTProject.Views
         private int filledStarCount = 0;
         public ContentsModel ContentModel { get; internal set; }
         public int ContentPK { get; set; }
-        public Diary(ContentsModel contentModel)
+        public int? PK {  get; set; }
+        private bool isModify = false;
+        public Diary(ContentsModel contentModel, bool isM)
         {
             InitializeComponent();
             ContentModel = contentModel;
             // 전달된 ContentModel을 사용하여 필요한 초기화 작업 수행
             // 예: title.Text = ContentModel.Title;
+            isModify = isM;
 
             Loaded += Diary_Loaded;
         }
@@ -82,6 +85,11 @@ namespace OTTProject.Views
             {
                 MessageBox.Show("ContentModel is null.");
             }
+
+            if(isModify == true)
+            {
+                Modify_button.Visibility = Visibility.Visible;
+            }
         }
 
         private bool IsWrite()
@@ -120,6 +128,33 @@ namespace OTTProject.Views
                 };
 
                 diaryViewModel.Write_Click(diaryModel, ContentModel, NavigationService);
+
+
+            }
+        }
+
+        private void Modify_Click(object sender, RoutedEventArgs e)
+        {
+            string diaryContent = content.Text;
+            string contentDate = date.Text;
+            int star = filledStarCount;
+            int contentPK = Convert.ToInt32(ContentModel.PK);
+            int userPk = Convert.ToInt32(((App)Application.Current).UserPK);
+
+            if (IsWrite())
+            {
+
+                DiaryModel diaryModel = new DiaryModel
+                {
+                    Pk = PK,
+                    Content = diaryContent,
+                    DateTime = contentDate,
+                    Star = star,
+                    ContentPk = contentPK,
+                    UserPk = userPk
+                };
+
+                diaryViewModel.Modify_Click(diaryModel, ContentModel, NavigationService);
 
 
             }

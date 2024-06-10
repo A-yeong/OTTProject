@@ -48,6 +48,33 @@ namespace OTTProject.Core
             }
         }
 
+        public void DiaryModify(DiaryModel diaryModel)
+        {
+            string query = "UPDATE OTT.Diary SET content = @content, date_time = @date_time, star = @star, content_pk = @content_pk, user_pk = @user_pk WHERE pk = @pk";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pk", diaryModel.Pk);
+                cmd.Parameters.AddWithValue("@content", diaryModel.Content);
+                cmd.Parameters.AddWithValue("@date_time", diaryModel.DateTime);
+                cmd.Parameters.AddWithValue("@star", diaryModel.Star);
+                cmd.Parameters.AddWithValue("@content_pk", diaryModel.ContentPk);
+                cmd.Parameters.AddWithValue("@user_pk", diaryModel.UserPk);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public List<DiaryModel> GetUserDiary(int? userPk)
         {
             List<DiaryModel> diaries = new List<DiaryModel>();

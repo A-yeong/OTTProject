@@ -1,4 +1,5 @@
-﻿using OTTProject.Models;
+﻿using OTTProject.Core;
+using OTTProject.Models;
 using OTTProject.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace OTTProject.Views
         private ReviewAndNickNameViewModels reviewAndNickNameViewModel = new ReviewAndNickNameViewModels();
         private ReviewViewModel reviewViewModel = new ReviewViewModel();
         private DiaryTitleAndContentViewModel diaryTitleAndContentViewModel = new DiaryTitleAndContentViewModel();
+        private ContentsRepository contentsRepo = new ContentsRepository();
         public MyPage()
         {
             InitializeComponent();
@@ -67,36 +69,19 @@ namespace OTTProject.Views
         public void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            DiaryTitleAndContentViewModel diaryModel = (DiaryTitleAndContentViewModel)button.Tag;
-            // 여기서부터 작성해야됨
-            // diaryModel.deleteDiary(reviewModel, ContentModel, NavigationService);
-        }
-
-        public void ModifyButton_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
             DiaryTitleAndContentModel diaryModel = (DiaryTitleAndContentModel)button.Tag;
 
-            string title = diaryModel.Title;
-            MessageBox.Show(title);
+            //string title = diaryModel.Title;
+            //MessageBox.Show(title);
 
-            //if (diaryModel.PK.HasValue)
-            //{
-            //    DiaryModel diary = diaryTitleAndContentViewModel.getDiary(diaryModel.PK.Value);
+            ContentsModel content = contentsRepo.ContentByPk(diaryModel.ContentPK);
 
-            //    ContentsModel contentModel = new ContentsModel
-            //    {
-            //        PK = diary.ContentPk,
-            //        ContentName = diaryModel.Title,
-            //    };
+            Diary diaryPage = new Diary(content, true)
+            {
+                PK = diaryModel.PK
+            };
 
-            //    Diary diaryPage = new Diary(contentModel);
-            //    NavigationService.Navigate(diaryPage);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Invalid diary entry.");
-            //}
+            NavigationService.Navigate(diaryPage);
         }
 
     }

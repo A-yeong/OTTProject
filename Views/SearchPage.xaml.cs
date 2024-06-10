@@ -198,7 +198,7 @@ namespace OTTProject.Views
             if (ContentModel != null)
             {
                 // Diary 페이지로 ContentModel 전달
-                Diary diaryPage = new Diary(ContentModel);
+                Diary diaryPage = new Diary(ContentModel, false);
                 NavigationService.Navigate(diaryPage);
             }
             else

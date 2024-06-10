@@ -28,5 +28,18 @@ namespace OTTProject.ViewModels
             navigationService?.Navigate(searchPage);
         }
 
+        public void Modify_Click(DiaryModel diaryModel, ContentsModel contentModel, NavigationService navigationService)
+        {
+            repo.DiaryModify(diaryModel);
+
+            MessageBox.Show("일기 수정이 완료되었습니다.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            SearchPage searchPage = new SearchPage
+            {
+                ContentModel = contentModel
+            };
+            navigationService?.Navigate(searchPage);
+        }
+
     }
 }
