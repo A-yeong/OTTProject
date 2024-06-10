@@ -102,5 +102,43 @@ namespace OTTProject.Core
             }
         }
 
+        //사용자의 즐겨찾기 목록 가져오기
+        public List<StarModel> StarByUser() {
+            int userPk = ((App)Application.Current).UserPK.Value;
+            List<StarModel> starModels = new List<StarModel>();
+            string query = "SELECT * FROM OTT.Star WHERE user_pk = @UserPk ORDER BY pk DESC LIMIT 10";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UserPk", userPk);
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    StarModel starModel = new StarModel
+                    {
+                        PK = reader.GetInt32("pk"),
+                        ContentPk = reader.GetInt32("content_pk"),
+                        UserPk = reader.GetInt32("user_pk"),
+                  
+                    };
+                    starModels.Add(starModel);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return starModels;
+        }
     }
 }
