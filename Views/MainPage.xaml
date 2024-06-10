@@ -9,6 +9,6 @@
       Title="MainPage">
 
     <Grid>
-        <Image Source="/Resources/main_img.png" Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Image Source="/Resources/strem_finder_main.png" Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
     </Grid>
 </Page>
