@@ -37,8 +37,6 @@ namespace OTTProject.Views
         private int filledStarCount = 0;
         private ReviewViewModel reviewViewModel = new ReviewViewModel();
         private ReviewAndNickNameViewModels reviewAndNickNameModelView = new ReviewAndNickNameViewModels();
-   
-
 
         //처음 로드
         private void SearchPage_Loaded(object sender, RoutedEventArgs e)
@@ -48,35 +46,30 @@ namespace OTTProject.Views
             if (userPk != null)
             {
                 reviewGrid.Visibility = Visibility.Visible;
-
             }
             else
             {
                 reviewGrid.Visibility = Visibility.Collapsed;
-
             }
 
             if (ContentModel != null)
-
             {   //ott처리
                 string ottStr = ContentModel.Ott;
                 string[] ottArray = ottStr.Split(',');
                 List<string> ottSources = new List<string>();
-                foreach(string value in ottArray) {
-                    if (value == "넷플릭스") {
+                foreach (string value in ottArray)
+                {
+                    if (value == "넷플릭스")
+                    {
                         ottSources.Add("/Resources/netflix.png");
                     }
-                    else {
+                    else
+                    {
                         ottSources.Add("/Resources/disney_plus.png");
                     }
                 }
-              
+
                 ottList.ItemsSource = ottSources;
-
-
-
-            {
-
 
                 title.Text = ContentModel.ContentName; // ContentModel의 제목을 표시
                 genre.Text = ContentModel.Genre;
@@ -114,6 +107,7 @@ namespace OTTProject.Views
                 MessageBox.Show("ContentModel is null.");
             }
         }
+
         //별 클릭
         private void StarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -134,9 +128,8 @@ namespace OTTProject.Views
                 starIcon.Foreground = Brushes.Gray; // 일반 별 색상 설정
                 filledStarCount--;
             }
-
-
         }
+
         //후기 등록
         private void createReview(object sender, RoutedEventArgs e)
         {
@@ -159,7 +152,6 @@ namespace OTTProject.Views
                 };
 
                 reviewViewModel.createReview(newReview, ContentModel, NavigationService);
-
             }
         }
 
@@ -184,8 +176,5 @@ namespace OTTProject.Views
             reviewViewModel.deleteReview(reviewModel, ContentModel, NavigationService);
             // 삭제 기능 구현
         }
-
-
-
     }
 }
