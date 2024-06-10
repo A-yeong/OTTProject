@@ -1,4 +1,5 @@
-﻿<Page x:Class="OTTProject.Views.SearchPage"
+﻿
+    <Page x:Class="OTTProject.Views.SearchPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,6 +8,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SearchPage">
+
+
 
     <Grid Background="#333333">
         <Grid.ColumnDefinitions>
@@ -97,33 +100,96 @@
             <Image Source="/Resources/netflix.png"/>
             <Image Source="/Resources/disney_plus.png"/>
         </StackPanel>
-        <Grid
-            Grid.Column="1"
-            Grid.Row="4"
-            Grid.ColumnSpan="2">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
 
-                <TextBox
-                    Grid.Column="0"
-                    Margin="10"
-                    Text="후기를 입력해주세요."/>
-                <Button Grid.Column="1" Margin="10">후기 작성</Button>
-                <Button Grid.Column="2" Margin="10" Click="Diary_Clicked">일기 작성</Button>
+        <Grid Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Name="reviewGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Name="starButton1" Click="StarButton_Click" Tag="1" Background="Transparent" BorderThickness="0">
+                    <TextBlock Name="starIcon1" FontFamily="Segoe UI Symbol" FontSize="20" Text="☆"/>
+                </Button>
+                <Button Grid.Column="1" Name="starButton2" Click="StarButton_Click" Tag="2" Background="Transparent" BorderThickness="0">
+                    <TextBlock Name="starIcon2" FontFamily="Segoe UI Symbol" FontSize="20" Text="☆" />
+                </Button>
+                <Button Grid.Column="2" Name="starButton3" Click="StarButton_Click" Tag="3" Background="Transparent" BorderThickness="0">
+                    <TextBlock Name="starIcon3" FontFamily="Segoe UI Symbol" FontSize="20" Text="☆" />
+                </Button>
+                <Button Grid.Column="3" Name="starButton4" Click="StarButton_Click" Tag="4" Background="Transparent" BorderThickness="0">
+                    <TextBlock Name="starIcon4" FontFamily="Segoe UI Symbol" FontSize="20" Text="☆"/>
+                </Button>
+                <Button Grid.Column="4" Name="starButton5" Click="StarButton_Click" Tag="5" Background="Transparent" BorderThickness="0">
+                    <TextBlock Name="starIcon5" FontFamily="Segoe UI Symbol" FontSize="20" Text="☆" />
+                </Button>
+
+
+
             </Grid>
+            <TextBox x:Name="review" Grid.Column="1" Margin="10" Text="후기를 입력해주세요."/>
+            <Button Grid.Column="2" Margin="10" Click="createReview">후기 작성</Button>
+            <Button Grid.Column="3" Margin="10" Click="Diary_Clicked">일기 작성</Button>
         </Grid>
-        <TextBlock
-            Grid.Column="1"
-            Grid.Row="5"
-            Text="후기"
-            FontSize="15"
-            Foreground="LightGray"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            Margin="50, 0, 20, 0"/>
+        <ListView x:Name="reviewListView" Grid.ColumnSpan="2" Grid.Row="5" Grid.Column="1"
+          Background="White" BorderThickness="0" Margin="0">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn DisplayMemberBinding="{Binding Nickname}" Width="80"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Content}" Width="250"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding StrStarCount}" Width="100"/>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Background="Transparent">
+
+                                    <Button Content="삭제" Click="DeleteButton_Click" Margin="5" Tag="{Binding}">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background" Value="White"/>
+
+                                                <Setter Property="Foreground" Value="Black"/>
+
+                                                <Setter Property="Padding" Value="10"/>
+
+                                                <Setter Property="BorderThickness" Value="1"/>
+
+                                                <Setter Property="BorderBrush" Value="Black"/>
+
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding CanDelete}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+
+
     </Grid>
 </Page>

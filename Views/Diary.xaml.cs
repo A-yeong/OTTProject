@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using OTTProject.Models;
+using OTTProject.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace OTTProject.Views
             Loaded += Diary_Loaded;
         }
 
-        
+        DiaryViewModels diaryViewModel = new DiaryViewModels();
 
         private void StarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -94,13 +95,32 @@ namespace OTTProject.Views
 
         private void Write_Click(object sender, RoutedEventArgs e)
         {
-            if(IsWrite())
+            string diaryContent = content.Text;
+            string contentDate = date.Text;
+            int star = filledStarCount;
+            int contentPK = Convert.ToInt32(ContentModel.PK);
+            int userPk = Convert.ToInt32(((App)Application.Current).UserPK);
+
+            if (IsWrite())
             {
-                string diaryContent = content.Text;
-                string contentDate = date.Text;
-                int start = filledStarCount;
-                int ContentPK = Convert.ToInt32(ContentModel.PK);
-                int UserPK = 
+                diaryContent = content.Text;
+                contentDate = date.Text;
+                star = filledStarCount;
+                contentPK = Convert.ToInt32(ContentModel.PK);
+                userPk = Convert.ToInt32(((App)Application.Current).UserPK);
+
+                DiaryModel diaryModel = new DiaryModel
+                {
+                    Content = diaryContent,
+                    DateTime = contentDate,
+                    Star = star,
+                    ContentPk = contentPK,
+                    UserPk = userPk
+                };
+
+                
+
+
             }
         }
     }

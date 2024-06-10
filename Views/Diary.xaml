@@ -158,6 +158,7 @@
             Grid.Column="1"
             Grid.Row="4"
             Grid.ColumnSpan="4"
-            Margin="200, 15, 200, 15">일기 작성 완료</Button>
+            Margin="200, 15, 200, 15"
+            Click="Write_Click">일기 작성 완료</Button>
     </Grid>
 </Page>
