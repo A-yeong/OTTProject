@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OTTProject.Models;
+using OTTProject.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,41 @@ namespace OTTProject.Views
     /// </summary>
     public partial class MyPage : Page
     {
+        UsersModel userModel;
+        UsersViewModels userViewModel = new UsersViewModels();
+        private DiaryTitleAndContentViewModel diaryTitleAndContentViewModel = new DiaryTitleAndContentViewModel();
         public MyPage()
         {
             InitializeComponent();
+            Loaded += MyPage_Load;
+        }
+
+        public void MyPage_Load(object sender, RoutedEventArgs e)
+        {
+            int userPk = ((App)Application.Current).UserPK.Value;
+            //MessageBox.Show(userPk.ToString());
+            userModel = userViewModel.FindNickName(userPk);
+            //string message = $"PK : {userModel.PK}\n" +
+            //                $"UserName : {userModel.UserName}\n" +
+            //                $"ID : {userModel.ID}\n" +
+            //                $"PW : {userModel.PW}\n" +
+            //                $"NickName : {userModel.NickName}\n";
+            //MessageBox.Show(message);
+            nickName.Text = userModel.NickName + "님";
+
+            List<DiaryTitleAndContentModel> diaryTitleAndContentModel = diaryTitleAndContentViewModel.DiaryList(userPk);
+            DiaryListView.ItemsSource = diaryTitleAndContentModel;
+        }
+
+        public void DeleteButton_Click(object sender, RoutedEventArgs e)
+        { }
+
+        public void ModifyButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            DiaryTitleAndContentViewModel diaryModel = (DiaryTitleAndContentViewModel)button.Tag;
+            // 여기서부터 작성해야됨
+            // diaryModel.deleteDiary(reviewModel, ContentModel, NavigationService);
         }
     }
 }

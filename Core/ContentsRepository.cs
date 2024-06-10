@@ -1,4 +1,4 @@
-﻿using MySqlConnector;
+using MySqlConnector;
 using OTTProject.Models;
 using System;
 using System.Collections.Generic;
@@ -94,6 +94,8 @@ namespace OTTProject.Core
             return contents;
         }
 
+
+
         //pk로 컨텐트 가져오기 
         public ContentsModel ContentByPk(int? pk)
         {
@@ -146,6 +148,36 @@ namespace OTTProject.Core
             }
 
             return contents;
+        }
+
+        public string getTitle(int? pk)
+        {
+            string title = "";
+            string query = "SELECT * FROM OTT.content WHERE pk = @PK";
+            // MessageBox.Show(title);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@PK", pk);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        title = reader["content_name"].ToString();
+                    }
+                }              
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("데이터베이스 연결 실패: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return title;
         }
 
     }

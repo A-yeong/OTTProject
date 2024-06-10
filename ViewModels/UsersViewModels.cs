@@ -37,5 +37,11 @@ namespace OTTProject.ViewModels
             return user;
         
         }
+
+        public UsersModel FindNickName(int pk)
+        {
+            UsersModel user = repo.FindNickName(pk);
+            return user;
+        }
     }
 }

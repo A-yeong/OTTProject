@@ -8,8 +8,166 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MyPage">
 
-    <Grid>
-        <TextBlock Text="마이페이지입니다"/>
+    <Grid Background="#333333">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
 
+        <Grid
+            Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                x:Name="nickName"
+                Grid.Column="0"
+                Text="nickname님"
+                Foreground="LightGray"
+                FontSize="20"
+                Margin="20"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"/>
+            <Button
+                Grid.Column="1"
+                Margin="250, 20, 20, 20"
+                Content="로그아웃"
+                Background="#666666"
+                Foreground="LightGray"/>
+        </Grid>
+
+        <Grid
+            Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Column="0"
+                Text="관심 작품"
+                Foreground="LightGray"
+                FontSize="17"
+                Margin="20"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"/>
+            <StackPanel Orientation="Horizontal"
+                Grid.Column="1">
+                <Image 
+                    Source="https://images.justwatch.com/poster/29880365/s166/incomplete-life.webp"
+                    Margin="10"/>
+                <Image
+                    Source="https://images.justwatch.com/poster/263306033/s166/seumuldaseos-seumulhana.webp"
+                    Margin="10"/>
+                <Image
+                    Source="https://images.justwatch.com/poster/130264350/s166/toi-seutori-4.webp"
+                    Margin="10"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid
+            Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="일기 관리"
+                FontSize="17"
+                Foreground="LightGray"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"/>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="후기 관리"
+                FontSize="17"
+                Foreground="LightGray"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"/>
+
+            <ListView
+                Grid.Row="1"
+                Grid.Column="0"
+                x:Name="DiaryListView"
+                Margin="20, 10"
+                Background="#333333"
+                Foreground="Black">
+                
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Title}"
+                            Width="80"/>
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Content}"
+                            Width="130"/>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                                        <Button Content="삭제" Click="DeleteButton_Click" Margin="5" Tag="{Binding}">
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Background" Value="White"/>
+
+                                                    <Setter Property="Foreground" Value="Black"/>
+
+                                                    <Setter Property="Padding" Value="10"/>
+
+                                                    <Setter Property="BorderThickness" Value="1"/>
+
+                                                    <Setter Property="BorderBrush" Value="Black"/>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                        <Button Content="편집" Click="ModifyButton_Click" Margin="5">
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Background" Value="White"/>
+
+                                                    <Setter Property="Foreground" Value="Black"/>
+
+                                                    <Setter Property="Padding" Value="10"/>
+
+                                                    <Setter Property="BorderThickness" Value="1"/>
+
+                                                    <Setter Property="BorderBrush" Value="Black"/>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <ListView
+                Grid.Row="1"
+                Grid.Column="1"
+                x:Name="ReviewListView"
+                Margin="20, 10"
+                Background="#333333"
+                Foreground="LightGray"></ListView>
+        </Grid>
     </Grid>
 </Page>
