@@ -49,14 +49,39 @@ namespace OTTProject.Views
         }
 
         public void DeleteButton_Click(object sender, RoutedEventArgs e)
-        { }
-
-        public void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             DiaryTitleAndContentViewModel diaryModel = (DiaryTitleAndContentViewModel)button.Tag;
             // 여기서부터 작성해야됨
             // diaryModel.deleteDiary(reviewModel, ContentModel, NavigationService);
         }
+
+        public void ModifyButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            DiaryTitleAndContentModel diaryModel = (DiaryTitleAndContentModel)button.Tag;
+
+            string title = diaryModel.Title;
+            MessageBox.Show(title);
+
+            //if (diaryModel.PK.HasValue)
+            //{
+            //    DiaryModel diary = diaryTitleAndContentViewModel.getDiary(diaryModel.PK.Value);
+
+            //    ContentsModel contentModel = new ContentsModel
+            //    {
+            //        PK = diary.ContentPk,
+            //        ContentName = diaryModel.Title,
+            //    };
+
+            //    Diary diaryPage = new Diary(contentModel);
+            //    NavigationService.Navigate(diaryPage);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Invalid diary entry.");
+            //}
+        }
+
     }
 }

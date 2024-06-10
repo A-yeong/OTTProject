@@ -1,5 +1,6 @@
 ﻿using MySqlConnector;
 using OTTProject.Models;
+using OTTProject.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +86,43 @@ namespace OTTProject.Core
             }
 
             return diaries;
+        }
+
+        public DiaryModel getDiaryModel(int? pk)
+        {
+            DiaryModel diary = null;
+            string query = "SELECT * FROM OTT.diary WHERE pk = @pk";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pk", pk);
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                diary = new DiaryModel
+                {
+                    Pk = reader.GetInt32("pk"),
+                    Content = reader.GetString("content"),
+                    DateTime = reader.GetString("date_time"),
+                    Star = reader.GetInt32("star"),
+                    ContentPk = reader.GetInt32("content_pk"),
+                    UserPk = reader.GetInt32("user_pk")
+                };
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return diary;
         }
     }
 }

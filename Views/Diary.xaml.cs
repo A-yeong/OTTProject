@@ -24,6 +24,7 @@ namespace OTTProject.Views
     {
         private int filledStarCount = 0;
         public ContentsModel ContentModel { get; internal set; }
+        public int ContentPK { get; set; }
         public Diary(ContentsModel contentModel)
         {
             InitializeComponent();

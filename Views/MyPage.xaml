@@ -138,7 +138,7 @@
                                                 </Style>
                                             </Button.Style>
                                         </Button>
-                                        <Button Content="편집" Click="ModifyButton_Click" Margin="5">
+                                        <Button Content="편집" Click="ModifyButton_Click" Margin="5" Tag="{Binding}">
                                             <Button.Style>
                                                 <Style TargetType="Button">
                                                     <Setter Property="Background" Value="White"/>

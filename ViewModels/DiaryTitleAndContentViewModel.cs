@@ -34,5 +34,11 @@ namespace OTTProject.ViewModels
 
             return diaryAndContentList;
         }
+
+        public DiaryModel getDiary(int pk)
+        {
+            DiaryModel model = diaryRepo.getDiaryModel(pk);
+            return model;
+        }
     }
 }
