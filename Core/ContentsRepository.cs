@@ -94,5 +94,51 @@ namespace OTTProject.Core
             return contents;
         }
 
+        public string SearchContents(int contentPk)
+        {
+            string title = "";
+            string query = "SELECT * FROM OTT.content WHERE pk = @contentPk";
+            // MessageBox.Show(title);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@contentPk", contentPk);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        title = reader["content_name"].ToString();
+                        
+                    }
+                }
+
+                //if (contents != null)
+                //{
+                //    string message = $"PK: {contents.PK}\n" +
+                //                     $"ContentName: {contents.ContentName}\n" +
+                //                     $"ImgUrl: {contents.ImgUrl}\n" +
+                //                     $"Synopsis: {contents.Synopsis}\n" +
+                //                     $"Genre: {contents.Genre}\n" +
+                //                     $"Ott: {contents.Ott}";
+                //    MessageBox.Show(message);
+                //}
+                //else
+                //{
+                //    MessageBox.Show("No content found with the given title.");
+                //}
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("데이터베이스 연결 실패: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return title;
+        }
+
     }
 }

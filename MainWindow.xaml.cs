@@ -27,6 +27,7 @@ namespace OTTProject
             {
                 int userPk = ((App)Application.Current).UserPK.Value;
                 MessageBox.Show($"사용자 {userPk}가 로그인 상태입니다.", "로그인 상태", MessageBoxButton.OK, MessageBoxImage.Information);
+                
                 MainFrame.Navigate(new MyPage());  
             }
             else
