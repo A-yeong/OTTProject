@@ -42,7 +42,7 @@ namespace OTTProject
             {
                 // 로그인 성공
                 ((App)Application.Current).UserPK = user.PK; // UserPK 저장
-                MessageBox.Show($"로그인 성공! 사용자 정보:\n\nUserPK: {((App)Application.Current).UserPK}\npk:{user.PK}UserName: {user.UserName}\nID: {user.ID}\nNickName: {user.NickName}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 // 메인 페이지로 이동
                 NavigationService?.Navigate(new Uri("Views/MainPage.xaml", UriKind.Relative));
             }
