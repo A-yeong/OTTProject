@@ -28,6 +28,7 @@ namespace OTTProject.Views
         private ReviewAndNickNameViewModels reviewAndNickNameViewModel = new ReviewAndNickNameViewModels();
         private ReviewViewModel reviewViewModel = new ReviewViewModel();
         private DiaryTitleAndContentViewModel diaryTitleAndContentViewModel = new DiaryTitleAndContentViewModel();
+        private DiaryViewModels diaryViewModels = new DiaryViewModels();
         public MyPage()
         {
             InitializeComponent();
@@ -61,7 +62,15 @@ namespace OTTProject.Views
         {
             Button button = (Button)sender;
             ReviewAndNickNameModel reviewModel = (ReviewAndNickNameModel)button.Tag;
-            reviewViewModel.myPageDeleteReview(reviewModel , NavigationService);     
+            reviewViewModel.myPageDeleteReview(reviewModel, NavigationService);
+   
+        }
+
+        public void Delete_Diary_Click(object sender, RoutedEventArgs e) {
+            Button button = (Button)sender;
+            DiaryTitleAndContentModel diaryModel = (DiaryTitleAndContentModel)button.Tag;
+            diaryViewModels.DeleteDiary(diaryModel.PK, NavigationService);
+
         }
 
         public void ModifyButton_Click(object sender, RoutedEventArgs e)
@@ -70,6 +79,9 @@ namespace OTTProject.Views
             DiaryTitleAndContentViewModel diaryModel = (DiaryTitleAndContentViewModel)button.Tag;
             // 여기서부터 작성해야됨
             // diaryModel.deleteDiary(reviewModel, ContentModel, NavigationService);
+        }
+        public void LogOut(object sender, RoutedEventArgs e) {
+            userViewModel.LogOut(NavigationService);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using OTTProject.Core;
 using OTTProject.Models;
+using OTTProject.Views;
 using System;
 using System.Security.Permissions;
 using System.Windows;
@@ -42,6 +43,12 @@ namespace OTTProject.ViewModels
         {
             UsersModel user = repo.FindNickName(pk);
             return user;
+        }
+
+        public void LogOut(NavigationService navigationService) {
+            ((App)Application.Current).UserPK = null;
+            navigationService?.Navigate(new MainPage());
+
         }
     }
 }
