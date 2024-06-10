@@ -58,14 +58,16 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-           <!--메인으로 돌아가기위해 누르려고 추후 마크 그려서 넣으면 좋을듯 -->
+    
             <Grid Grid.Column="0">
-                <Button x:Name="mark" Style="{StaticResource ImageButtonStyle}" Cursor="Hand" >
+                <Button x:Name="mark" Style="{StaticResource ImageButtonStyle}" Cursor="Hand"  Click="LogoClicked">
                     <Image Source="/Resources/stream_finder.png" Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                 </Button>
             </Grid>
             <Grid Grid.Column="1">
-                <TextBox x:Name ="search_title" Style="{StaticResource HeaderTextBoxStyle}" Text="영화 또는 TV 프로그램 입력" Foreground="Gray"/>
+                <TextBox x:Name="search_title" Style="{StaticResource HeaderTextBoxStyle}" 
+             Text="영화 또는 TV 프로그램 입력" Foreground="Gray"
+             GotFocus="search_title_GotFocus" LostFocus="search_title_LostFocus"/>
             </Grid>
             <Grid Grid.Column="2">
                 <Button Style="{StaticResource HeaderButtonStyle}" Content="검색" Click="SearchButton_Click"/>
