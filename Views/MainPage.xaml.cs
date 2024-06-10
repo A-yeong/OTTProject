@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OTTProject.Models;
+using OTTProject.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,25 @@ namespace OTTProject.Views
         public MainPage()
         {
             InitializeComponent();
+            Loaded += MainPage_Loaded;
+        }
+        StarViewModel starViewModel = new StarViewModel();
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e) {
+            var userPk = ((App)Application.Current).UserPK;
+
+            if (userPk != null)
+            {
+                starContentList.Visibility = Visibility.Visible;
+                List<string> contentImgUrls = starViewModel.starContentByUser();
+                starContentList.ItemsSource = contentImgUrls;
+
+            }
+            else{
+                starContentList.Visibility = Visibility.Collapsed;
+
+            }
+       
         }
     }
 }
