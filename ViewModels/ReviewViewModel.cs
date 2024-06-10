@@ -32,5 +32,10 @@ namespace OTTProject.ViewModels
             };
             navigationService?.Navigate(searchPage);
         }
+
+        public void myPageDeleteReview(ReviewAndNickNameModel reviewModel, NavigationService navigationService) {
+            repo.DeleteReview(reviewModel);
+            navigationService?.Navigate(new MyPage());
+        }
     }
 }

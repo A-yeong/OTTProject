@@ -18,7 +18,7 @@ namespace OTTProject.Core
             string connString = "Server=localhost;Uid=root;Database=ott;Port=3306;Pwd=1234";
             conn = new MySqlConnection(connString);
         }
-        //후기 보기
+        //컨텐츠별 후기 보기
         public List<ReviewModel> GetReviewsByContentPk(int? contentPk)
         {
             List<ReviewModel> reviews = new List<ReviewModel>();
@@ -27,6 +27,46 @@ namespace OTTProject.Core
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@ContentPk", contentPk);
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ReviewModel review = new ReviewModel
+                    {
+                        PK = reader.GetInt32("pk"),
+                        ContentPk = reader.GetInt32("content_pk"),
+                        UserPk = reader.GetInt32("user_pk"),
+                        Star = reader.GetInt32("star"),
+                        Content = reader.GetString("content")
+                    };
+                    reviews.Add(review);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return reviews;
+        }
+        //사용자별 후기 모두 보기
+        public List<ReviewModel> GetReivesByUser()
+        {
+            int userPk = ((App)Application.Current).UserPK.Value;
+            List<ReviewModel> reviews = new List<ReviewModel>();
+            string query = "SELECT * FROM OTT.Review WHERE user_pk = @UserPk";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UserPk", userPk);
 
                 conn.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();

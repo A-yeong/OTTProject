@@ -54,18 +54,26 @@
                 Margin="20"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"/>
-            <StackPanel Orientation="Horizontal"
-                Grid.Column="1">
-                <Image 
-                    Source="https://images.justwatch.com/poster/29880365/s166/incomplete-life.webp"
-                    Margin="10"/>
-                <Image
-                    Source="https://images.justwatch.com/poster/263306033/s166/seumuldaseos-seumulhana.webp"
-                    Margin="10"/>
-                <Image
-                    Source="https://images.justwatch.com/poster/130264350/s166/toi-seutori-4.webp"
-                    Margin="10"/>
-            </StackPanel>
+            <ListView x:Name="starContentList" Grid.Column="1">
+                <ListView.Style>
+                    <Style TargetType="ListView">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    </Style>
+                </ListView.Style>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding}" Stretch="Uniform" MaxHeight="100" MaxWidth="100" Margin="5" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
 
         <Grid
@@ -123,7 +131,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" Background="Transparent">
-                                        <Button Content="삭제" Click="DeleteButton_Click" Margin="5" Tag="{Binding}">
+                                        <Button Content="삭제"  Margin="5" Tag="{Binding}">
                                             <Button.Style>
                                                 <Style TargetType="Button">
                                                     <Setter Property="Background" Value="White"/>
@@ -164,10 +172,56 @@
             <ListView
                 Grid.Row="1"
                 Grid.Column="1"
-                x:Name="ReviewListView"
+                x:Name="reviewList"
                 Margin="20, 10"
                 Background="#333333"
-                Foreground="LightGray"></ListView>
+                Foreground="Black">
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Nickname}"
+                            Width="60"/>
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Content}"
+                            Width="130"/>
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding StrStarCount}"
+                            Width="90"/>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                                        <Button Content="삭제" Click="Review_DeleteButton_Click" Margin="5" Tag="{Binding}">
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Background" Value="White"/>
+
+                                                    <Setter Property="Foreground" Value="Black"/>
+
+                                                    <Setter Property="Padding" Value="10"/>
+
+                                                    <Setter Property="BorderThickness" Value="1"/>
+
+                                                    <Setter Property="BorderBrush" Value="Black"/>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                       
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
     </Grid>
 </Page>
