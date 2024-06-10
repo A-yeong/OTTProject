@@ -37,6 +37,7 @@ namespace OTTProject.Views
                 starContentList.Visibility = Visibility.Visible;
                 List<string> contentImgUrls = starViewModel.starContentByUser();
                 starContentList.ItemsSource = contentImgUrls;
+               
 
             }
             else{
