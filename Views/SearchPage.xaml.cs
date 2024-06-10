@@ -35,7 +35,7 @@ namespace OTTProject.Views
         public string TitleQuery { get; set; }
         public ContentsModel ContentModel { get; set; }
         private int filledStarCount = 0;
-       private ReviewViewModel reviewViewModel = new ReviewViewModel();
+        private ReviewViewModel reviewViewModel = new ReviewViewModel();
         private ReviewAndNickNameViewModels reviewAndNickNameModelView = new ReviewAndNickNameViewModels();
 
         //처음 로드
@@ -46,17 +46,17 @@ namespace OTTProject.Views
             if (userPk != null)
             {
                 reviewGrid.Visibility = Visibility.Visible;
-            
+
             }
             else
             {
                 reviewGrid.Visibility = Visibility.Collapsed;
-              
+
             }
 
             if (ContentModel != null)
             {
-                
+
                 title.Text = ContentModel.ContentName; // ContentModel의 제목을 표시
                 genre.Text = ContentModel.Genre;
                 synopsis.Text = ContentModel.Synopsis;
@@ -71,7 +71,7 @@ namespace OTTProject.Views
                     content_img.Source = bitmap;
                 }
 
-                List<ReviewAndNickNameModel> reviewAndNickNameList = reviewAndNickNameModelView. ReviewList(ContentModel.PK);
+                List<ReviewAndNickNameModel> reviewAndNickNameList = reviewAndNickNameModelView.ReviewList(ContentModel.PK);
                 foreach (var review in reviewAndNickNameList)
                 {
                     if (review.UserPk == userPk)
@@ -114,7 +114,7 @@ namespace OTTProject.Views
                 filledStarCount--;
             }
 
-           
+
         }
         //후기 등록
         private void createReview(object sender, RoutedEventArgs e)
@@ -142,7 +142,19 @@ namespace OTTProject.Views
             }
         }
 
-     
+        private void Diary_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (ContentModel != null)
+            {
+                // Diary 페이지로 ContentModel 전달
+                Diary diaryPage = new Diary(ContentModel);
+                NavigationService.Navigate(diaryPage);
+            }
+            else
+            {
+                MessageBox.Show("ContentModel is null.");
+            }
+        }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -152,7 +164,7 @@ namespace OTTProject.Views
             // 삭제 기능 구현
         }
 
- 
+
 
     }
 }

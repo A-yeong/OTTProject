@@ -15,7 +15,7 @@ namespace OTTProject.Core
 
         public ReviewRepository()
         {
-            string connString = "Server=localhost;Uid=root;Database=databasetest;Port=3306;Pwd=1234";
+            string connString = "Server=localhost;Uid=root;Database=ott;Port=3306;Pwd=1234";
             conn = new MySqlConnection(connString);
         }
         //후기 보기

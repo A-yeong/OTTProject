@@ -19,7 +19,7 @@ namespace OTTProject.ViewModels
         public ContentsModel SearchContents(string title)
         {
             ContentsModel contents = conRepo.SearchContents(title);
-            MessageBox.Show(contents.PK.ToString());
+            // MessageBox.Show(contents.PK.ToString());
             return contents;
         }
     }
