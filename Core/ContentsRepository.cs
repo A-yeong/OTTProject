@@ -18,7 +18,7 @@ namespace OTTProject.Core
             string connString = "Server=localhost;Uid=root;Database=ott;Port=3306;Pwd=1234";
             conn = new MySqlConnection(connString);
         }
-
+        //db연결 테스트 임의로 만들어둠 
         //public void TestDatabaseConnection()
         //{
         //    try
@@ -69,13 +69,7 @@ namespace OTTProject.Core
 
                 if (contents != null)
                 {
-                    string message = $"PK: {contents.PK}\n" +
-                                     $"ContentName: {contents.ContentName}\n" +
-                                     $"ImgUrl: {contents.ImgUrl}\n" +
-                                     $"Synopsis: {contents.Synopsis}\n" +
-                                     $"Genre: {contents.Genre}\n" +
-                                     $"Ott: {contents.Ott}";
-                    MessageBox.Show(message);
+        
                 }
                 else
                 {
@@ -99,7 +93,6 @@ namespace OTTProject.Core
         {
             ContentsModel contents = null;
             string query = "SELECT * FROM OTT.content WHERE pk = @PK";
-            // MessageBox.Show(title);
             try
             {
                 conn.Open();
@@ -121,20 +114,7 @@ namespace OTTProject.Core
                     }
                 }
 
-                if (contents != null)
-                {
-                    string message = $"PK: {contents.PK}\n" +
-                                     $"ContentName: {contents.ContentName}\n" +
-                                     $"ImgUrl: {contents.ImgUrl}\n" +
-                                     $"Synopsis: {contents.Synopsis}\n" +
-                                     $"Genre: {contents.Genre}\n" +
-                                     $"Ott: {contents.Ott}";
-                    MessageBox.Show(message);
-                }
-                else
-                {
-                    MessageBox.Show("No content found with the given title.");
-                }
+           
             }
             catch (MySqlException ex)
             {

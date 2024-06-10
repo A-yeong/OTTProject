@@ -25,11 +25,23 @@ namespace OTTProject.ViewModels
         public void DeleteStar(StarModel starModel) {
             starRepo.DeleteStar(starModel);
         }
-
+        
+        //관심작품 10개만 
         public List<string> starContentByUser() {
             List<string> imgUrls = new List<string>();
             List<StarModel> stars = starRepo.StarByUser();
             foreach (StarModel value in stars) {
+                ContentsModel contentModel = contentsRepo.ContentByPk(value.ContentPk);
+                imgUrls.Add(contentModel.ImgUrl);
+            }
+            return imgUrls;
+        }
+        //관심작품 모두 가져오기
+        public List<string> starContentByUserAll() {
+            List<string> imgUrls = new List<string>();
+            List<StarModel> stars = starRepo.StarByUserAll();
+            foreach (StarModel value in stars)
+            {
                 ContentsModel contentModel = contentsRepo.ContentByPk(value.ContentPk);
                 imgUrls.Add(contentModel.ImgUrl);
             }
