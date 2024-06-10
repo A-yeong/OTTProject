@@ -37,6 +37,8 @@ namespace OTTProject.Views
         private int filledStarCount = 0;
         private ReviewViewModel reviewViewModel = new ReviewViewModel();
         private ReviewAndNickNameViewModels reviewAndNickNameModelView = new ReviewAndNickNameViewModels();
+   
+
 
         //처음 로드
         private void SearchPage_Loaded(object sender, RoutedEventArgs e)
@@ -55,7 +57,26 @@ namespace OTTProject.Views
             }
 
             if (ContentModel != null)
+
+            {   //ott처리
+                string ottStr = ContentModel.Ott;
+                string[] ottArray = ottStr.Split(',');
+                List<string> ottSources = new List<string>();
+                foreach(string value in ottArray) {
+                    if (value == "넷플릭스") {
+                        ottSources.Add("/Resources/netflix.png");
+                    }
+                    else {
+                        ottSources.Add("/Resources/disney_plus.png");
+                    }
+                }
+              
+                ottList.ItemsSource = ottSources;
+
+
+
             {
+
 
                 title.Text = ContentModel.ContentName; // ContentModel의 제목을 표시
                 genre.Text = ContentModel.Genre;
