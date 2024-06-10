@@ -25,7 +25,7 @@ namespace OTTProject.ViewModels
                 {
                     PK = value.Pk,
                     ContentPK = value.ContentPk,
-                    Title = contentRepo.SearchContents(contentPk),
+                    Title = contentRepo.getTitle(contentPk),
                     Content = value.Content
                 };
 

@@ -33,7 +33,9 @@
             Grid.RowSpan="2"
             Margin="30,3,30,0"
                     VerticalAlignment="Top" Height="286"/>
-            <TextBlock
+            <Grid Grid.Column="2" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
             x:Name="title"
             Grid.Column="2"
             Text="리틀 포레스트"
@@ -42,6 +44,12 @@
             VerticalAlignment="Center" Height="26"
   
             />
+                    <Button Click="Star_Click" Margin="30,0,0,0" Name="starButton"  Tag="1" Background="Transparent" BorderThickness="0">
+                        <TextBlock Name="star" FontFamily="Segoe UI Symbol" FontSize="20" Text="☆"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+       
             <TextBlock
           
             Grid.Column="1"
@@ -91,16 +99,25 @@
              VerticalAlignment="Center"
              HorizontalAlignment="Left"
              Margin="83,0,0,0" Height="20" Width="28"/>
-            <StackPanel
-    Grid.Column="2"
-    Grid.Row="3"
-    Orientation="Horizontal"
-    VerticalAlignment="Center"
-    HorizontalAlignment="Left"
-    Margin="10,0,0,0" Height="110" Width="216">
-                <Image Source="/Resources/netflix.png" Stretch="Uniform" MaxHeight="100" MaxWidth="100" Margin="5"/>
-                <Image Source="/Resources/disney_plus.png" Stretch="Uniform" MaxHeight="100" MaxWidth="100" Margin="5"/>
-            </StackPanel>
+            <ListView x:Name="ottList" Grid.Column="2" Grid.Row="3">
+                <ListView.Style>
+                    <Style TargetType="ListView">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+             
+                    </Style>
+                </ListView.Style>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding}" Stretch="Uniform" MaxHeight="100" MaxWidth="100" Margin="5" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <Grid Grid.Row="4" Grid.ColumnSpan="3" Name="reviewGrid" Margin="130,29,130,29">
                 <Grid.ColumnDefinitions>
