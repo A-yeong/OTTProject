@@ -53,7 +53,7 @@
             <TextBlock
           
             Grid.Column="1"
-            Grid.Row="2"
+            Grid.Row="1"
             Text="장르"
             FontSize="15"
             Foreground="LightGray"

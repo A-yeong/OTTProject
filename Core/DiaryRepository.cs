@@ -87,6 +87,47 @@ namespace OTTProject.Core
             return diaries;
         }
 
+        //다이어리 5개만 보여주기 
+        public List<DiaryModel> GetDiaryByUserMainPage(int? userPk)
+        {
+            List<DiaryModel> diaries = new List<DiaryModel>();
+            string query = "SELECT * FROM OTT.diary WHERE user_pk = @userPk ORDER BY pk DESC LIMIT 5";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@userPk", userPk);
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    DiaryModel diary = new DiaryModel
+                    {
+                        Pk = reader.GetInt32("pk"),
+                        Content = reader.GetString("content"),
+                        DateTime = reader.GetString("date_time"),
+                        Star = reader.GetInt32("star"),
+                        ContentPk = reader.GetInt32("content_pk"),
+                        UserPk = reader.GetInt32("user_pk")
+                    };
+                    diaries.Add(diary);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return diaries;
+        }
+
         //다이러리 삭제
         public void DeleteDiary(int? diaryPk)
         {

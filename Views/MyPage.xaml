@@ -71,7 +71,10 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="{Binding}" Stretch="Uniform" MaxHeight="100" MaxWidth="100" Margin="5" />
+                        <Button 
+                  Tag="{Binding}" Click="Img_Click">
+                            <Image Source="{Binding}" Stretch="Uniform" MaxHeight="140" MaxWidth="100" Margin="5" />
+                        </Button>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
