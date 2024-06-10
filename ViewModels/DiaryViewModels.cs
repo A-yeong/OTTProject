@@ -41,5 +41,11 @@ namespace OTTProject.ViewModels
             navigationService?.Navigate(searchPage);
         }
 
+        public void DeleteDiary(int? diaryPk,NavigationService navigationService) {
+
+            repo.DeleteDiary(diaryPk);
+            navigationService?.Navigate(new MyPage());
+        }
+
     }
 }

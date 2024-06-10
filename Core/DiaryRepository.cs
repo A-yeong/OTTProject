@@ -151,5 +151,28 @@ namespace OTTProject.Core
 
             return diary;
         }
+
+        //다이러리 삭제
+        public void DeleteDiary(int? diaryPk)
+        {
+            string query = "DELETE FROM OTT.diary WHERE PK = @PK";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@PK", diaryPk);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

@@ -36,7 +36,8 @@
                 Margin="250, 20, 20, 20"
                 Content="로그아웃"
                 Background="#666666"
-                Foreground="LightGray"/>
+                Foreground="LightGray"
+                Click="LogOut"/>
         </Grid>
 
         <Grid
@@ -131,7 +132,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" Background="Transparent">
-                                        <Button Content="삭제"  Margin="5" Tag="{Binding}">
+                                        <Button Content="삭제"  Margin="5" Tag="{Binding}" Click="Delete_Diary_Click">
                                             <Button.Style>
                                                 <Style TargetType="Button">
                                                     <Setter Property="Background" Value="White"/>

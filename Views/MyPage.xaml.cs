@@ -30,6 +30,8 @@ namespace OTTProject.Views
         private ReviewViewModel reviewViewModel = new ReviewViewModel();
         private DiaryTitleAndContentViewModel diaryTitleAndContentViewModel = new DiaryTitleAndContentViewModel();
         private ContentsRepository contentsRepo = new ContentsRepository();
+        private DiaryViewModels diaryViewModels = new DiaryViewModels();
+
         public MyPage()
         {
             InitializeComponent();
@@ -63,7 +65,15 @@ namespace OTTProject.Views
         {
             Button button = (Button)sender;
             ReviewAndNickNameModel reviewModel = (ReviewAndNickNameModel)button.Tag;
-            reviewViewModel.myPageDeleteReview(reviewModel , NavigationService);     
+            reviewViewModel.myPageDeleteReview(reviewModel, NavigationService);
+   
+        }
+
+        public void Delete_Diary_Click(object sender, RoutedEventArgs e) {
+            Button button = (Button)sender;
+            DiaryTitleAndContentModel diaryModel = (DiaryTitleAndContentModel)button.Tag;
+            diaryViewModels.DeleteDiary(diaryModel.PK, NavigationService);
+
         }
 
         public void ModifyButton_Click(object sender, RoutedEventArgs e)
@@ -84,5 +94,8 @@ namespace OTTProject.Views
             NavigationService.Navigate(diaryPage);
         }
 
+        public void LogOut(object sender, RoutedEventArgs e) {
+            userViewModel.LogOut(NavigationService);
+        }
     }
 }
