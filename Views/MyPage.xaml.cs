@@ -24,6 +24,9 @@ namespace OTTProject.Views
     {
         UsersModel userModel;
         UsersViewModels userViewModel = new UsersViewModels();
+        private StarViewModel starViewModel = new StarViewModel();
+        private ReviewAndNickNameViewModels reviewAndNickNameViewModel = new ReviewAndNickNameViewModels();
+        private ReviewViewModel reviewViewModel = new ReviewViewModel();
         private DiaryTitleAndContentViewModel diaryTitleAndContentViewModel = new DiaryTitleAndContentViewModel();
         public MyPage()
         {
@@ -46,9 +49,22 @@ namespace OTTProject.Views
 
             List<DiaryTitleAndContentModel> diaryTitleAndContentModel = diaryTitleAndContentViewModel.DiaryList(userPk);
             DiaryListView.ItemsSource = diaryTitleAndContentModel;
+            List<string> urlImgs = starViewModel.starContentByUserAll();
+            starContentList.ItemsSource = urlImgs;
+            List<ReviewAndNickNameModel> review = reviewAndNickNameViewModel.ReviewListByUser();
+            reviewList.ItemsSource = review;
+
+
         }
 
-        public void DeleteButton_Click(object sender, RoutedEventArgs e)
+        public void Review_DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            ReviewAndNickNameModel reviewModel = (ReviewAndNickNameModel)button.Tag;
+            reviewViewModel.myPageDeleteReview(reviewModel , NavigationService);     
+        }
+
+        public void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             DiaryTitleAndContentViewModel diaryModel = (DiaryTitleAndContentViewModel)button.Tag;
