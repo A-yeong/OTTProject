@@ -113,7 +113,7 @@
                     Margin="10"
                     Text="후기를 입력해주세요."/>
                 <Button Grid.Column="1" Margin="10">후기 작성</Button>
-                <Button Grid.Column="2" Margin="10">일기 작성</Button>
+                <Button Grid.Column="2" Margin="10" Click="Diary_Clicked">일기 작성</Button>
             </Grid>
         </Grid>
         <TextBlock

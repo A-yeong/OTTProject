@@ -1,21 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using OTTProject.Models;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using OTTProject.ViewModels;
-using OTTProject.Models;
-using Microsoft.VisualBasic;
+using System.Windows;
 
 namespace OTTProject.Views
 {
@@ -51,6 +37,20 @@ namespace OTTProject.Views
                     bitmap.EndInit();
                     content_img.Source = bitmap;
                 }
+            }
+            else
+            {
+                MessageBox.Show("ContentModel is null.");
+            }
+        }
+
+        private void Diary_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (ContentModel != null)
+            {
+                // Diary 페이지로 ContentModel 전달
+                Diary diaryPage = new Diary(ContentModel);
+                NavigationService.Navigate(diaryPage);
             }
             else
             {
