@@ -1,5 +1,6 @@
 ﻿using MySqlConnector;
 using OTTProject.Models;
+using OTTProject.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,33 @@ namespace OTTProject.Core
             try
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@content", diaryModel.Content);
+                cmd.Parameters.AddWithValue("@date_time", diaryModel.DateTime);
+                cmd.Parameters.AddWithValue("@star", diaryModel.Star);
+                cmd.Parameters.AddWithValue("@content_pk", diaryModel.ContentPk);
+                cmd.Parameters.AddWithValue("@user_pk", diaryModel.UserPk);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void DiaryModify(DiaryModel diaryModel)
+        {
+            string query = "UPDATE OTT.Diary SET content = @content, date_time = @date_time, star = @star, content_pk = @content_pk, user_pk = @user_pk WHERE pk = @pk";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pk", diaryModel.Pk);
                 cmd.Parameters.AddWithValue("@content", diaryModel.Content);
                 cmd.Parameters.AddWithValue("@date_time", diaryModel.DateTime);
                 cmd.Parameters.AddWithValue("@star", diaryModel.Star);
@@ -85,6 +113,43 @@ namespace OTTProject.Core
             }
 
             return diaries;
+        }
+
+        public DiaryModel getDiaryModel(int? pk)
+        {
+            DiaryModel diary = null;
+            string query = "SELECT * FROM OTT.diary WHERE pk = @pk";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pk", pk);
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                diary = new DiaryModel
+                {
+                    Pk = reader.GetInt32("pk"),
+                    Content = reader.GetString("content"),
+                    DateTime = reader.GetString("date_time"),
+                    Star = reader.GetInt32("star"),
+                    ContentPk = reader.GetInt32("content_pk"),
+                    UserPk = reader.GetInt32("user_pk")
+                };
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리 (로그 기록 등)
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return diary;
         }
 
         //다이러리 삭제
