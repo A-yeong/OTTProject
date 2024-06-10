@@ -32,6 +32,8 @@ namespace OTTProject.Views
         private ContentsRepository contentsRepo = new ContentsRepository();
         private DiaryViewModels diaryViewModels = new DiaryViewModels();
 
+        private ContentViewModels contentViewModels = new ContentViewModels();
+
         public MyPage()
         {
             InitializeComponent();
@@ -97,5 +99,13 @@ namespace OTTProject.Views
         public void LogOut(object sender, RoutedEventArgs e) {
             userViewModel.LogOut(NavigationService);
         }
+
+        private void Img_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            string url = (string)button.Tag;
+            contentViewModels.FindContentByUrl(url, NavigationService);
+        }
+
     }
 }

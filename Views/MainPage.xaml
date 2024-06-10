@@ -29,10 +29,41 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding}" Stretch="Uniform" MaxHeight="140" MaxWidth="100" Margin="5" />
+                    <Button 
+                  Tag="{Binding}" Click="Img_Click">
+                        <Image Source="{Binding}" Stretch="Uniform" MaxHeight="140" MaxWidth="100" Margin="5" />
+                    </Button>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <ListView
+                Grid.Row="1"
+                x:Name="DiaryListView"
+                Margin="20, 10"
+                Background="#333333"
+                Foreground="Black">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Title}"
+                            Width="150"/>
+                    <GridViewColumn
+                            DisplayMemberBinding="{Binding Content}"
+                            Width="400"/>
+                   
+                </GridView>
+            </ListView.View>
+        </ListView>
+
 
     </Grid>
 </Page>

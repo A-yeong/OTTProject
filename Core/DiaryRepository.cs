@@ -115,27 +115,35 @@ namespace OTTProject.Core
             return diaries;
         }
 
-        public DiaryModel getDiaryModel(int? pk)
+        //다이어리 5개만 보여주기 
+        public List<DiaryModel> GetDiaryByUserMainPage(int? userPk)
         {
-            DiaryModel diary = null;
-            string query = "SELECT * FROM OTT.diary WHERE pk = @pk";
+            List<DiaryModel> diaries = new List<DiaryModel>();
+            string query = "SELECT * FROM OTT.diary WHERE user_pk = @userPk ORDER BY pk DESC LIMIT 5";
             try
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@pk", pk);
+                cmd.Parameters.AddWithValue("@userPk", userPk);
+
 
                 conn.Open();
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                diary = new DiaryModel
+              while (reader.Read())
                 {
-                    Pk = reader.GetInt32("pk"),
-                    Content = reader.GetString("content"),
-                    DateTime = reader.GetString("date_time"),
-                    Star = reader.GetInt32("star"),
-                    ContentPk = reader.GetInt32("content_pk"),
-                    UserPk = reader.GetInt32("user_pk")
-                };
+                    DiaryModel diary = new DiaryModel
+                    {
+                        Pk = reader.GetInt32("pk"),
+                        Content = reader.GetString("content"),
+                        DateTime = reader.GetString("date_time"),
+                        Star = reader.GetInt32("star"),
+                        ContentPk = reader.GetInt32("content_pk"),
+                        UserPk = reader.GetInt32("user_pk")
+                    };
+                    diaries.Add(diary);
+                }
+
+         
 
                 reader.Close();
             }
@@ -149,7 +157,10 @@ namespace OTTProject.Core
                 conn.Close();
             }
 
-            return diary;
+
+            return diaries;
+
+
         }
 
         //다이러리 삭제

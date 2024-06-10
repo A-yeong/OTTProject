@@ -27,7 +27,10 @@ namespace OTTProject.Views
             InitializeComponent();
             Loaded += MainPage_Loaded;
         }
-        StarViewModel starViewModel = new StarViewModel();
+       private StarViewModel starViewModel = new StarViewModel();
+        private DiaryTitleAndContentViewModel diaryTitleAndContentViewModel = new DiaryTitleAndContentViewModel();
+        private DiaryViewModels diaryViewModels = new DiaryViewModels();
+        private ContentViewModels ContentViewModels = new ContentViewModels();
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e) {
             var userPk = ((App)Application.Current).UserPK;
@@ -37,7 +40,9 @@ namespace OTTProject.Views
                 starContentList.Visibility = Visibility.Visible;
                 List<string> contentImgUrls = starViewModel.starContentByUser();
                 starContentList.ItemsSource = contentImgUrls;
-               
+                List<DiaryTitleAndContentModel> diaryTitleAndContentModel = diaryTitleAndContentViewModel.DiaryList(userPk);
+                DiaryListView.ItemsSource = diaryTitleAndContentModel;
+
 
             }
             else{
@@ -46,5 +51,12 @@ namespace OTTProject.Views
             }
        
         }
+        private void Img_Click(object sender, RoutedEventArgs e) {
+            Button button = (Button)sender;
+            string  url = (string)button.Tag;
+            ContentViewModels.FindContentByUrl(url, NavigationService);
+        }
+
+
     }
 }
