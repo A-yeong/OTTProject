@@ -147,7 +147,8 @@
             Grid.ColumnSpan="3">
             <TextBox
                 x:Name="content"
-                Text="후기를 자유롭게 작성해주세요."
+                Text="일기를 자유롭게 작성해주세요."
+                GotFocus="content_GotFocus" LostFocus="content_LostFocus"
                 Background="#333333"
                 Foreground="LightGray"
                 FontSize="15"

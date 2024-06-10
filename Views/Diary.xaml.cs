@@ -118,9 +118,27 @@ namespace OTTProject.Views
                     UserPk = userPk
                 };
 
-                
+                diaryViewModel.Write_Click(diaryModel, ContentModel, NavigationService);
 
 
+            }
+        }
+
+        private void content_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (content.Text == "일기를 자유롭게 작성해주세요.")
+            {
+                content.Text = string.Empty;
+                content.Foreground = Brushes.Black;
+            }
+        }
+
+        private void content_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(content.Text))
+            {
+                content.Text = "일기를 자유롭게 작성해주세요.";
+                content.Foreground = Brushes.Gray;
             }
         }
     }
