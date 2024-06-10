@@ -34,26 +34,44 @@ namespace OTTProject.Views
 
         public string TitleQuery { get; set; }
         public ContentsModel ContentModel { get; set; }
+        private StarModel starModel;
         private int filledStarCount = 0;
         private ReviewViewModel reviewViewModel = new ReviewViewModel();
         private ReviewAndNickNameViewModels reviewAndNickNameModelView = new ReviewAndNickNameViewModels();
+        private StarViewModel starViewModel = new StarViewModel();
 
         //처음 로드
         private void SearchPage_Loaded(object sender, RoutedEventArgs e)
         {
-            var userPk = ((App)Application.Current).UserPK;
-
-            if (userPk != null)
-            {
-                reviewGrid.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                reviewGrid.Visibility = Visibility.Collapsed;
-            }
+           
 
             if (ContentModel != null)
-            {   //ott처리
+
+            {
+                var userPk = ((App)Application.Current).UserPK;
+
+                if (userPk != null)
+                {
+                    reviewGrid.Visibility = Visibility.Visible;
+                    starButton.Visibility = Visibility.Visible;
+                    StarModel starValue = starViewModel.GetStarModel(ContentModel.PK);
+                    if (starValue != null)
+                    {
+                        star.Text = "★";
+                        star.Foreground = Brushes.Yellow;
+                        starModel = starValue;
+                    }
+                    else {
+                        star.Text = "☆";
+                    }
+                }
+                else
+                {
+                    reviewGrid.Visibility = Visibility.Collapsed;
+                    starButton.Visibility = Visibility.Collapsed;
+                }
+
+                //ott처리
                 string ottStr = ContentModel.Ott;
                 string[] ottArray = ottStr.Split(',');
                 List<string> ottSources = new List<string>();
@@ -107,8 +125,28 @@ namespace OTTProject.Views
                 MessageBox.Show("ContentModel is null.");
             }
         }
+        //즐겨 찾기 관리
+        private void Star_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (star.Text == "☆")
+            {
+                // 클릭된 경우: 채워진 별로 변경
+                star.Text = "★";
+                star.Foreground = Brushes.Yellow;
+                starViewModel.CreateStar(ContentModel.PK);
+                starModel = starViewModel.GetStarModel(ContentModel.PK);
+            }
+            else
+            {
+                // 클릭되지 않은 경우: 일반 별로 변경
+                star.Text = "☆";
+                starViewModel.DeleteStar(starModel);
+                
+            }
+        }
 
-        //별 클릭
+        //별점 클릭
         private void StarButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;

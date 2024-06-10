@@ -85,7 +85,7 @@ namespace OTTProject.Core
         //후기 삭제
         public void DeleteReview(ReviewAndNickNameModel reviewModel)
         {
-            string query = "DELETE FROM OTT.Review7777777777777777777777777 WHERE PK = @PK";
+            string query = "DELETE FROM OTT.Review WHERE PK = @PK";
             try
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);

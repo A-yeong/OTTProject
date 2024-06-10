@@ -33,7 +33,9 @@
             Grid.RowSpan="2"
             Margin="30,3,30,0"
                     VerticalAlignment="Top" Height="286"/>
-            <TextBlock
+            <Grid Grid.Column="2" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
             x:Name="title"
             Grid.Column="2"
             Text="리틀 포레스트"
@@ -42,6 +44,12 @@
             VerticalAlignment="Center" Height="26"
   
             />
+                    <Button Click="Star_Click" Margin="30,0,0,0" Name="starButton"  Tag="1" Background="Transparent" BorderThickness="0">
+                        <TextBlock Name="star" FontFamily="Segoe UI Symbol" FontSize="20" Text="☆"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+       
             <TextBlock
           
             Grid.Column="1"
